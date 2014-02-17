@@ -1,0 +1,10 @@
+src/main/resources/database.properties
+.idea
+.classpath
+.settings
+.project
+build/
+target/
+config/
+*.iml
+*.class
