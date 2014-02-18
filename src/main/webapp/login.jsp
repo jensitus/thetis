@@ -20,7 +20,7 @@
 
 </form>
 
-${username}<br>
+Hi, ${username}<br>
 ${password}
 
 </body>
