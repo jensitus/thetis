@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class CrudUserDao extends BaseDao implements UserDao {
 
     @Override
-    public void createUser(String sql, String username, String encryptedPassword) {
+    public boolean createUser(String sql, String username, String encryptedPassword) {
 
         PreparedStatement preparedStatement;
 
@@ -20,9 +20,11 @@ public class CrudUserDao extends BaseDao implements UserDao {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, encryptedPassword);
             preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.out.println("doppelter user: ");
             System.out.println(e.toString()); //.printStackTrace();
+            return false;
         } finally {
             closeConn();
         }

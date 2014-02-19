@@ -18,12 +18,24 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        String successmessage = "Perfect, now login!!";
+        String errormessage = "Something is wrong";
+
         PasswordService passwordService = new DefaultPasswordService();
         String encryptedPassword = passwordService.encryptPassword(password);
         String sql = "insert into user(username, password) values(?,?);";
         CrudUserDao userDao = new CrudUserDao();
-        userDao.createUser(sql, username, encryptedPassword);
-        response.sendRedirect("login");
+        boolean cu = userDao.createUser(sql, username, encryptedPassword);
+        if (cu == true) {
+
+            response.setHeader("perfect", successmessage);
+            response.sendRedirect("login");
+        } else {
+            response.sendError(100, "fehler");
+            //response.setHeader("error", errormessage);
+            //response.sendRedirect("register");
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
