@@ -5,9 +5,7 @@ import course.user.dao.CrudUserDao;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -28,8 +26,18 @@ public class LoginServlet extends HttpServlet {
         } else if (username == null){
             request.setAttribute("errormessage", errormessage);
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-        requestDispatcher.forward(request, response);
+
+        HttpSession httpSession = request.getSession();
+        String sessionId = httpSession.getId();
+        httpSession.setAttribute("user", username);
+
+        Cookie cookie = new Cookie(username, sessionId);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        response.sendRedirect("/");
+
+        //RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+        //requestDispatcher.forward(request, response);
 
     }
 
