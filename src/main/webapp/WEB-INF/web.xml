@@ -4,7 +4,10 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
-
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>course.user.filter.AuthFilter</filter-class>
+    </filter>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
