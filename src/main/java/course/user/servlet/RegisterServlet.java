@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String sql = "insert into user(username, password) values(?,?);";
         CrudUserDao userDao = new CrudUserDao();
         userDao.createUser(sql, username, encryptedPassword);
-        response.sendRedirect("/login");
+        response.sendRedirect("login");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

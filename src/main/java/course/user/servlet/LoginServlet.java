@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         Cookie cookie = new Cookie(username, sessionId);
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        response.sendRedirect("/");
+        response.sendRedirect("index");
 
         //RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
         //requestDispatcher.forward(request, response);
