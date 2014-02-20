@@ -8,6 +8,7 @@
     <% } else { %>
         Hi, <%= request.getAttribute("u") %>
         <a href="logout">logout</a>
+        <a href="create">create</a>
     <% } %>
 
 

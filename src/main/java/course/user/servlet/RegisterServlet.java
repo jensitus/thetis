@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -28,10 +29,10 @@ public class RegisterServlet extends HttpServlet {
         boolean cu = userDao.createUser(sql, username, encryptedPassword);
         if (cu == true) {
 
-            response.setHeader("perfect", successmessage);
             response.sendRedirect("login");
         } else {
-            response.sendError(100, "fehler");
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>it is wrong</font>");
             //response.setHeader("error", errormessage);
             //response.sendRedirect("register");
         }

@@ -1,4 +1,4 @@
-package course.user;
+package course.user.model;
 
 /**
  * Created by jens on 2/17/14.
