@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -16,33 +17,26 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getParameter("password");
         String sql = "select * from user where username = ?;";
 
-        CrudUserDao crudUserDao = new CrudUserDao();
-        String username;
-        String errormessage = null;
-        username = crudUserDao.readUser(sql, user, pass);
-
-        if (username != null){
-            request.setAttribute("username", username);
-        } else if (username == null){
-            request.setAttribute("errormessage", errormessage);
-        }
-
         HttpSession httpSession = request.getSession();
         String sessionId = httpSession.getId();
-        httpSession.setAttribute("user", username);
 
-        Cookie cookie = new Cookie(username, sessionId);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
-        response.sendRedirect("index");
+        CrudUserDao crudUserDao = new CrudUserDao();
+        String username;
+        username = crudUserDao.readUser(sql, user, pass);
 
-        //RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-        //requestDispatcher.forward(request, response);
-
+        if (username == null) {
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>Either username or password is wrong</font>");
+        } else if (username.equals(user)){
+            httpSession.setAttribute("user", username);
+            Cookie cookie = new Cookie(username, sessionId);
+            cookie.setHttpOnly(true);
+            response.addCookie(cookie);
+            response.sendRedirect("index");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
         requestDispatcher.forward(request, response);
     }

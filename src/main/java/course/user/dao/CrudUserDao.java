@@ -39,7 +39,6 @@ public class CrudUserDao extends BaseDao implements UserDao {
         PasswordService passwordService = new DefaultPasswordService();
         String username = null;
         String password = null;
-        String errormessage = "Error, try it again!";
         preparedStatement = getPreparedStatement(sql);
         try {
             preparedStatement.setString(1, user);
@@ -56,7 +55,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
         if (passwordService.passwordsMatch(pass, password)){
             return username;
         } else {
-            return errormessage;
+            return null;
         }
     }
 }

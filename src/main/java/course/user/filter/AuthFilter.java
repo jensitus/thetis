@@ -31,8 +31,6 @@ public class AuthFilter implements Filter {
                 }
             }
         }
-        System.out.println("u: ");
-        System.out.println(u);
 
         request.setAttribute("u", u);
 
