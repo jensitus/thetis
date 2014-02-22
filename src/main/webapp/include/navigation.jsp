@@ -1,5 +1,6 @@
 <div class="navigation">
     <a href="index">index</a>
+    <a href="posts">post</a>
 
 
     <% if (request.getAttribute("u") == null){ %>
