@@ -20,6 +20,9 @@ public class PostListServlet extends HttpServlet {
 
         CrudPostDao crudPostDao = new CrudPostDao();
         List<Post> posts = crudPostDao.postList();
+
+        System.out.print(posts);
+
         //Post posts = (Post) crudPostDao.postList();
 
         request.setAttribute("posts", posts);

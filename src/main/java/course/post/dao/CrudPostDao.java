@@ -11,6 +11,8 @@ import java.util.List;
 
 public class CrudPostDao extends BaseDao implements PostDao {
 
+    //private int userId;
+
     @Override
     public void createPost(String title, String body, int userId) {
 
@@ -51,16 +53,24 @@ public class CrudPostDao extends BaseDao implements PostDao {
         List<Post> posts = new ArrayList<>();
         PreparedStatement preparedStatement;
         ResultSet resultSet;
+        //int userId;
 
-        preparedStatement = getPreparedStatement("select * from post;");
+        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id;");
         try {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
+                System.out.println(id);
                 String title = resultSet.getString("title");
                 String body = resultSet.getString("body");
+
                 int userId = resultSet.getInt("userId");
-                Post post = new Post(id, title, body, userId);
+
+                String username = resultSet.getString("username");
+
+                //String username = getUsername(userId);
+                Post post = new Post(id, title, body, userId, username);
+                System.out.println(post);
                 posts.add(post);
             }
         } catch (SQLException e) {
@@ -68,6 +78,29 @@ public class CrudPostDao extends BaseDao implements PostDao {
         } finally {
             closeConn();
         }
+
         return posts;
     }
+
+    private String getUsername(int userId){
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        String username = null;
+        preparedStatement = getPreparedStatement("select * from user where id = ?;");
+        try {
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                username = resultSet.getString("username");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
+
+        return username;
+    }
+
+
 }
