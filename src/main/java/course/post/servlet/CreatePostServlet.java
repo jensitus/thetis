@@ -1,11 +1,15 @@
 package course.post.servlet;
 
+import course.post.dao.CrudPostDao;
+import course.user.dao.CrudUserDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/create")
@@ -15,11 +19,19 @@ public class CreatePostServlet extends HttpServlet {
         String title = request.getParameter("title");
         String body = request.getParameter("body");
 
-        request.setAttribute("title", title);
-        request.setAttribute("body", body);
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("user");
+        int userId;
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("createPost.jsp");
-        dispatcher.forward(request, response);
+        CrudUserDao crudUserDao = new CrudUserDao();
+        userId = crudUserDao.getUserId(username);
+
+        CrudPostDao crudPostDao = new CrudPostDao();
+        crudPostDao.createPost(title, body, userId);
+
+        response.sendRedirect("index");
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        //dispatcher.forward(request, response);
 
     }
 
