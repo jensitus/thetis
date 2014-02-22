@@ -11,35 +11,37 @@ import java.sql.SQLException;
 public class CrudUserDao extends BaseDao implements UserDao {
 
     @Override
-    public boolean createUser(String sql, String username, String encryptedPassword) {
+    public boolean createUser(String username, String encryptedPassword) {
 
         PreparedStatement preparedStatement;
+        boolean r;
 
-        preparedStatement = getPreparedStatement(sql);
+        preparedStatement = getPreparedStatement("insert into user(username, password) values(?,?);");
         try {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, encryptedPassword);
             preparedStatement.executeUpdate();
-            return true;
+            r = true;
         } catch (SQLException e) {
             System.out.println("doppelter user: ");
             System.out.println(e.toString()); //.printStackTrace();
-            return false;
+            r = false;
         } finally {
             closeConn();
         }
+        return r;
 
     }
 
     @Override
-    public String readUser(String sql, String user, String pass) {
+    public String readUser(String user, String pass) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         PasswordService passwordService = new DefaultPasswordService();
         String username = null;
         String password = null;
-        preparedStatement = getPreparedStatement(sql);
+        preparedStatement = getPreparedStatement("select * from user where username = ?;");
         try {
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();

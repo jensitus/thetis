@@ -15,14 +15,14 @@ public class LoginServlet extends HttpServlet {
 
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-        String sql = "select * from user where username = ?;";
+        //String sql = "select * from user where username = ?;";
 
         HttpSession httpSession = request.getSession();
         String sessionId = httpSession.getId();
 
         CrudUserDao crudUserDao = new CrudUserDao();
         String username;
-        username = crudUserDao.readUser(sql, user, pass);
+        username = crudUserDao.readUser(user, pass);
 
         if (username == null) {
             PrintWriter out = response.getWriter();

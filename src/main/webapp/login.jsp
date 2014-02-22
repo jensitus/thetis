@@ -12,6 +12,9 @@
 <body>
 <%@include file="include/navigation.jsp" %>
 
+${success}
+<br>
+
 <form action="login" method="post">
 
     <input type="text" name="username"><br>
