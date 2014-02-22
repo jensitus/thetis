@@ -19,22 +19,25 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        String successmessage = "Perfect, now login!!";
-        String errormessage = "Something is wrong";
+        String successmessage = "passt, now login with your credentials";
+        String errormessage = "maybe you're not the first, who likes this username";
 
         PasswordService passwordService = new DefaultPasswordService();
         String encryptedPassword = passwordService.encryptPassword(password);
-        String sql = "insert into user(username, password) values(?,?);";
+        //String sql = "insert into user(username, password) values(?,?);";
         CrudUserDao userDao = new CrudUserDao();
-        boolean cu = userDao.createUser(sql, username, encryptedPassword);
+        boolean cu = userDao.createUser(username, encryptedPassword);
         if (cu == true) {
-
-            response.sendRedirect("login");
+            request.setAttribute("success", successmessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login");
+            dispatcher.forward(request,response);
+            //response.sendRedirect("login");
         } else {
+            //request.setAttribute("error", errormessage);
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("index");
+            //dispatcher.forward(request,response);
             PrintWriter out = response.getWriter();
             out.println("<font color=red>it is wrong</font>");
-            //response.setHeader("error", errormessage);
-            //response.sendRedirect("register");
         }
 
     }
