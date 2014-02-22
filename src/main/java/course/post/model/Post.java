@@ -6,12 +6,14 @@ public class Post {
     private String title;
     private String body;
     private int userId;
+    private String username;
 
-    public Post(int id, String title, String body, int userId) {
+    public Post(int id, String title, String body, int userId, String username) {
         this.setId(id);
         this.setTitle(title);
         this.setBody(body);
         this.setUserId(userId);
+        this.setUsername(username);
     }
 
     public int getId() {
@@ -46,4 +48,11 @@ public class Post {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

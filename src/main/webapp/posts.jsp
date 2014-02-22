@@ -13,8 +13,10 @@
 <%@include file="include/navigation.jsp" %>
 
 <c:forEach items="${posts}" var="post">
-    ${post.title}<br>
-    ${post.body}<br><br>
+        ${post.id}<br>
+        ${post.title}<br>
+        ${post.body}<br>
+        ${post.username}<br><br>
 
 </c:forEach><br><br>
 
