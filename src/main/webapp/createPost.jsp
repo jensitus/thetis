@@ -15,7 +15,7 @@
 <form action="create" method="post">
     <input type="text" name="title" class="input"><br>
     <textarea cols="40" rows="15" name="body" placeholder="Enter Text Here" class="input"></textarea><br>
-    <input type="submit" class="button">
+    <input type="submit" value="ab die post" class="button">
 </form>
 
 <br>
