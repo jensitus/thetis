@@ -14,9 +14,9 @@
 
 <form action="register" method="post">
 
-    <input type="text" name="username"><br>
-    <input type="password" name="password"><br>
-    <input type="submit" value="press">
+    <input type="text" name="username" class="input"><br>
+    <input type="password" name="password" class="input"><br>
+    <input type="submit" value="press" class="button">
 
 </form>
 

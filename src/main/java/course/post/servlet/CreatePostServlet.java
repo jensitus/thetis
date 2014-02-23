@@ -23,13 +23,26 @@ public class CreatePostServlet extends HttpServlet {
         String username = (String) session.getAttribute("user");
         int userId;
 
-        CrudUserDao crudUserDao = new CrudUserDao();
-        userId = crudUserDao.getUserId(username);
+        String testTitle = title;
+        String testBody = body;
 
-        CrudPostDao crudPostDao = new CrudPostDao();
-        crudPostDao.createPost(title, body, userId);
+        if (title.trim().isEmpty()) {
+            String error = "So nicht!!";
+            request.setAttribute("error", error);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("createPost.jsp");
+            dispatcher.forward(request,response);
+        } else {
 
-        response.sendRedirect("index");
+            CrudUserDao crudUserDao = new CrudUserDao();
+            userId = crudUserDao.getUserId(username);
+
+            CrudPostDao crudPostDao = new CrudPostDao();
+            crudPostDao.createPost(title, body, userId);
+
+            response.sendRedirect("posts");
+
+        }
+
         //RequestDispatcher dispatcher = request.getRequestDispatcher("");
         //dispatcher.forward(request, response);
 

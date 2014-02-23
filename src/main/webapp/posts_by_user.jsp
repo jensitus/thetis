@@ -6,22 +6,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../resources/css/style.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
 
-${success}
-<br>
-
-<form action="login" method="post">
-
-    <input type="text" name="username" class="input"><br>
-    <input type="password" name="password" class="input"><br>
-    <input type="submit" value="press" class="button">
-
-</form>
+<c:forEach items="${posts}" var="post">
+       <a href="../post/?id=${post.id}">${post.title}</a><br>
+       ${post.body}<br>
+</c:forEach>
 
 </body>
 </html>

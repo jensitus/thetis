@@ -19,6 +19,8 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+
+
         String successmessage = "passt, now login with your credentials";
         String errormessage = "maybe you're not the first, who likes this username";
 

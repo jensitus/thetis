@@ -11,8 +11,6 @@ import java.util.List;
 
 public class CrudPostDao extends BaseDao implements PostDao {
 
-    //private int userId;
-
     @Override
     public void createPost(String title, String body, int userId) {
 
@@ -33,44 +31,81 @@ public class CrudPostDao extends BaseDao implements PostDao {
     }
 
     @Override
-    public Post readPost() {
-        return null;
+    public Post readPost(int id1) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        Post post = null;
+
+        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id where post.id = ?;");
+        try {
+            preparedStatement.setInt(1, id1);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String body = resultSet.getString("body");
+                int userId = resultSet.getInt("userId");
+                String username = resultSet.getString("username");
+                post = new Post(id, title, body, userId, username);
+                System.out.println(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
+        return post;
     }
 
     @Override
-    public void updatePost() {
+    public void updatePost(int id, String title, String body) {
+        PreparedStatement preparedStatement;
+
+        preparedStatement = getPreparedStatement("update post set title = ?, body = ? where id = ?;");
+        try {
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, body);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
 
     }
 
     @Override
-    public void deletePost() {
+    public void deletePost(int id) {
+        PreparedStatement preparedStatement;
+
+        preparedStatement = getPreparedStatement("delete from post where id = ?;");
+        try {
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
 
     }
 
     @Override
     public List<Post> postList() {
-
         List<Post> posts = new ArrayList<>();
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        //int userId;
-
         preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id;");
         try {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                System.out.println(id);
                 String title = resultSet.getString("title");
                 String body = resultSet.getString("body");
-
                 int userId = resultSet.getInt("userId");
-
                 String username = resultSet.getString("username");
-
-                //String username = getUsername(userId);
                 Post post = new Post(id, title, body, userId, username);
-                System.out.println(post);
                 posts.add(post);
             }
         } catch (SQLException e) {
@@ -78,9 +113,35 @@ public class CrudPostDao extends BaseDao implements PostDao {
         } finally {
             closeConn();
         }
-
         return posts;
     }
+
+    @Override
+    public List<Post> postByUser(String user) {
+        List<Post> posts = new ArrayList<>();
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id where user.username = ?;");
+        try {
+            preparedStatement.setString(1, user);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String body = resultSet.getString("body");
+                int userId = resultSet.getInt("userId");
+                String username = resultSet.getString("username");
+                Post post = new Post(id, title, body, userId, username);
+                posts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
+        return posts;
+    }
+
 
     private String getUsername(int userId){
         PreparedStatement preparedStatement;
