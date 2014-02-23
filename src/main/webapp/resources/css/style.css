@@ -5,3 +5,35 @@ body {
     font-size: 15px;
 }
 
+.input {
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.input:focus {
+    border: 1px solid #aaa;
+    box-shadow: 0px 0px 2px 2px #aaf;
+}
+
+.button {
+    margin: 5px;
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #aaa;
+}
+
+.deletebutton {
+    border: none;
+    font-size: 11px;
+    background: none;
+    text-decoration: underline;
+    color: #aaf;
+}
+

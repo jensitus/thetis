@@ -12,16 +12,19 @@
 <body>
 <%@include file="include/navigation.jsp" %>
 
-${success}
-<br>
+<form action="stringtest" method="post">
 
-<form action="login" method="post">
-
-    <input type="text" name="username" class="input"><br>
-    <input type="password" name="password" class="input"><br>
-    <input type="submit" value="press" class="button">
+    <input type="text" name="title" class="input"><br>
+    <input type="text" name="body" class="input"><br>
+    <input type="submit" value="OK" class="button">
 
 </form>
+
+<hr>
+<br>
+${title}<br>
+${body}<br>
+${b}
 
 </body>
 </html>

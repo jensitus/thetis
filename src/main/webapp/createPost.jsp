@@ -13,13 +13,13 @@
 <%@include file="include/navigation.jsp" %>
 
 <form action="create" method="post">
-    <input type="text" name="title"><br>
-    <textarea cols="40" rows="15" name="body" placeholder="Enter Text Here"></textarea><br>
-    <input type="submit">
+    <input type="text" name="title" class="input"><br>
+    <textarea cols="40" rows="15" name="body" placeholder="Enter Text Here" class="input"></textarea><br>
+    <input type="submit" class="button">
 </form>
 
 <br>
-<h4>${title}</h4>
+${error}
 
 ${body}
 

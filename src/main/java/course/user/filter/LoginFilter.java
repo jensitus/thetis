@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/create"})
+@WebFilter(urlPatterns = {"/create", "/updatePost/*", "/deletePost/*"})
 public class LoginFilter implements Filter {
 
     public void destroy() {
@@ -45,7 +45,7 @@ public class LoginFilter implements Filter {
         if (sessionID.equals(userSessionID)){
             System.out.println("true");
         } else {
-            ((HttpServletResponse) response).sendRedirect("login");
+            ((HttpServletResponse) response).sendRedirect("/login");
             return;
         }
 
