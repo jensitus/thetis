@@ -12,6 +12,10 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>course.user.filter.LoginFilter</filter-class>
     </filter>
+    <servlet>
+        <servlet-name>ConnectServlet</servlet-name>
+        <servlet-class>course.contact.servlet.ConnectServlet</servlet-class>
+    </servlet>
 
 
     <welcome-file-list>
