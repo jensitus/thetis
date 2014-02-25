@@ -16,7 +16,7 @@
 
         <a href="post/?id=${post.id}">${post.title}</a><br>
         ${post.body}<br>
-        <small>by: <a href="posts/?user=${post.username}">${post.username}</small><br><br>
+        <small>by: <a href="user/?name=${post.username}">${post.username}</a></small><br><br>
 
 </c:forEach><br><br>
 

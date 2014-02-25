@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         CrudUserDao crudUserDao = new CrudUserDao();
         String username;
-        username = crudUserDao.readUser(user, pass);
+        username = crudUserDao.loginUser(user, pass);
 
         if (username == null) {
             PrintWriter out = response.getWriter();

@@ -34,7 +34,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
     }
 
     @Override
-    public String readUser(String user, String pass) {
+    public String loginUser(String user, String pass) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -82,5 +82,10 @@ public class CrudUserDao extends BaseDao implements UserDao {
         }
 
         return userId;
+    }
+
+    @Override
+    public String readUser(String user) {
+        return null;
     }
 }

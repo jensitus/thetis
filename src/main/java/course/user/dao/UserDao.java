@@ -6,7 +6,8 @@ package course.user.dao;
 public interface UserDao {
 
     public boolean createUser(String username, String encryptedPassword);
-    public String readUser(String user, String pass);
+    public String loginUser(String user, String pass);
     public int getUserId(String username);
+    public String readUser(String user);
 
 }

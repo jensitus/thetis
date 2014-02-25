@@ -13,6 +13,7 @@
         <filter-class>course.user.filter.LoginFilter</filter-class>
     </filter>
 
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
