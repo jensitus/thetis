@@ -12,14 +12,9 @@
 <body>
 <%@include file="include/navigation.jsp" %>
 <br>
-
-<c:forEach items="${posts}" var="post">
-
-    <a href="../post/?id=${post.id}">${post.title}</a><br>
-    ${post.body}<br>
-    <small>by: ${post.username}</small><br><br>
-
-</c:forEach>
+${user.username}<br>
+${user.description}<br><br>
+<button>connect</button>
 
 </body>
 </html>

@@ -17,8 +17,8 @@ ${success}
 
 <form action="login" method="post">
 
-    <input type="text" name="username" class="input"><br>
-    <input type="password" name="password" class="input"><br>
+    <input type="text" name="username" placeholder="username" class="input"><br>
+    <input type="password" name="password" placeholder="password" class="input"><br>
     <input type="submit" value="press" class="button">
 
 </form>

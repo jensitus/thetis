@@ -18,6 +18,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String description = request.getParameter("description");
 
 
 
@@ -28,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String encryptedPassword = passwordService.encryptPassword(password);
         //String sql = "insert into user(username, password) values(?,?);";
         CrudUserDao userDao = new CrudUserDao();
-        boolean cu = userDao.createUser(username, encryptedPassword);
+        boolean cu = userDao.createUser(username, encryptedPassword, description);
         if (cu == true) {
             request.setAttribute("success", successmessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("login");

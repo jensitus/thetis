@@ -14,8 +14,9 @@
 
 <form action="register" method="post">
 
-    <input type="text" name="username" class="input"><br>
-    <input type="password" name="password" class="input"><br>
+    <input type="text" name="username" placeholder="username" class="input"><br>
+    <input type="password" name="password" placeholder="password" class="input"><br>
+    <textarea cols="31" rows="3" name="description" placeholder="Say few words about you, e.g. 'survived childhood' or something like that" class="input"></textarea><br>
     <input type="submit" value="press" class="button">
 
 </form>

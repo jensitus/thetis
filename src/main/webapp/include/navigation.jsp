@@ -7,7 +7,7 @@
         <a href="../login">login</a>
         <a href="../register">register</a>
     <% } else { %>
-        Hi, <%= request.getAttribute("u") %>
+        Hi, <a href='user/?name=<%= request.getAttribute("u") %>'><%= request.getAttribute("u") %></a>
         <a href="../logout">logout</a>
         <a href="../create">create</a>
     <% } %>
