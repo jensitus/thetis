@@ -21,7 +21,7 @@ toRead: ${user.username}
 <c:if test="${u != user.username}">
     <c:choose>
         <c:when test="${c == true}">
-            <form action="" method="post">
+            <form action="/disconnect_user" method="post">
 
                 <input type="hidden" name="reader" value="${u}">
                 <input type="hidden" name="toRead" value="${user.username}">

@@ -121,7 +121,11 @@ public class CrudPostDao extends BaseDao implements PostDao {
         List<Post> posts = new ArrayList<>();
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id where user.username = ?;");
+        preparedStatement = getPreparedStatement("select " +
+                "post.id, post.title, post.body, post.userId, user.username " +
+                "from post inner join user " +
+                "on post.userId = user.id " +
+                "where user.username = ?;");
         try {
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();
@@ -140,6 +144,38 @@ public class CrudPostDao extends BaseDao implements PostDao {
             closeConn();
         }
         return posts;
+    }
+
+    @Override
+    public List<Post> contactPosts(String user) {
+        List<Post> conPosts = new ArrayList<>();
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        preparedStatement = getPreparedStatement("select " +
+                "post.id, post.title, post.body, post.userId " +
+                "from post, user, reader " +
+                "where user.id = reader.readerId " +
+                "and reader.toReadId = post.userId " +
+                "and user.username = ?;");
+        try {
+            preparedStatement.setString(1, user);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("post.id");
+                String title = resultSet.getString("post.title");
+                String body = resultSet.getString("post.body");
+                int userId = resultSet.getInt("post.userId");
+                String username = getUsername(userId);
+                Post post = new Post(id, title, body, userId, username);
+                conPosts.add(post);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
+        return conPosts;
     }
 
 
