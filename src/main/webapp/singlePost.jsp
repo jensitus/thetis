@@ -15,7 +15,7 @@
 <h4>${post.title}</h4>
 ${post.body}<br>
 <small>
-    by: <a href="../posts/?user=${post.username}">${post.username}</a>
+    by: <a href="../user/?name=${post.username}">${post.username}</a>
 
     <c:if test="${u != null}">
         <c:choose>

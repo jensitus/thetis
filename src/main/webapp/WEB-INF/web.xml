@@ -13,10 +13,9 @@
         <filter-class>course.user.filter.LoginFilter</filter-class>
     </filter>
     <servlet>
-        <servlet-name>ConnectServlet</servlet-name>
-        <servlet-class>course.contact.servlet.ConnectServlet</servlet-class>
+        <servlet-name>DisconnectServlet</servlet-name>
+        <servlet-class>course.contact.servlet.DisconnectServlet</servlet-class>
     </servlet>
-
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

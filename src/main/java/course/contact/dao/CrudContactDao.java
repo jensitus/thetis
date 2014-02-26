@@ -63,4 +63,26 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         }
     }
 
+    @Override
+    public boolean deleteContact(int readerId, int toReadId) {
+        PreparedStatement preparedStatement;
+        boolean dc = false;
+        preparedStatement = getPreparedStatement("delete from reader where readerId = ? and toReadId = ?;");
+        try {
+            preparedStatement.setInt(1, readerId);
+            preparedStatement.setInt(2, toReadId);
+            preparedStatement.execute();
+            dc = true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            dc = false;
+        } finally {
+            closeConn();
+        }
+        System.out.println("dc: ");
+        System.out.println(dc);
+        return dc;
+    }
+
 }

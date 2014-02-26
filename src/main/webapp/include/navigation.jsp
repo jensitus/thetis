@@ -10,6 +10,7 @@
         Hi, <a href='../user/?name=<%= request.getAttribute("u") %>'><%= request.getAttribute("u") %></a>
         <a href="../logout">logout</a>
         <a href="../create">create</a>
+        <a href="../connected_posts">connects</a>
     <% } %>
 
 
