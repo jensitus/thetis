@@ -11,4 +11,5 @@ public interface PostDao {
     public void deletePost(int id);
     public List<Post> postList();
     public List<Post> postByUser(String user);
+    public List<Post> contactPosts(String user);
 }

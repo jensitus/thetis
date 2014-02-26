@@ -1,5 +1,6 @@
 package course.user.servlet;
 
+import course.contact.dao.CrudContactDao;
 import course.user.dao.CrudUserDao;
 import course.user.model.User;
 
@@ -20,14 +21,26 @@ public class ShowUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("name");
 
+        String uvariable = (String) request.getAttribute("u");
+
         CrudUserDao crudUserDao = new CrudUserDao();
+        CrudContactDao contactDao = new CrudContactDao();
 
         User user;
         user = crudUserDao.readUser(userName);
 
+        int userReaderId = crudUserDao.getUserId(uvariable);
+        int userToReadId = crudUserDao.getUserId(userName);
+
+        boolean c = contactDao.readConnectedUsers(userReaderId, userToReadId);
+
+        request.setAttribute("c", c);
+        request.setAttribute("uvariable", uvariable);
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("../show_user.jsp");
         dispatcher.forward(request, response);
+
+
 
     }
 

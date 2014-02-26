@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/create", "/updatePost/*", "/deletePost/*"})
+@WebFilter(urlPatterns = {"/create", "/updatePost/*", "/deletePost/*", "/connect_user"})
 public class LoginFilter implements Filter {
 
     public void destroy() {
