@@ -1,6 +1,8 @@
 package course.user.servlet;
 
 import course.contact.dao.CrudContactDao;
+import course.post.dao.CrudPostDao;
+import course.post.model.Post;
 import course.user.dao.CrudUserDao;
 import course.user.model.User;
 
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/user/*")
 public class ShowUserServlet extends HttpServlet {
@@ -25,6 +28,9 @@ public class ShowUserServlet extends HttpServlet {
 
         CrudUserDao crudUserDao = new CrudUserDao();
         CrudContactDao contactDao = new CrudContactDao();
+        CrudPostDao postDao = new CrudPostDao();
+
+        List<Post> postByUser = postDao.postByUser(userName);
 
         User user;
         user = crudUserDao.readUser(userName);
@@ -34,6 +40,7 @@ public class ShowUserServlet extends HttpServlet {
 
         boolean c = contactDao.readConnectedUsers(userReaderId, userToReadId);
 
+        request.setAttribute("posts", postByUser);
         request.setAttribute("c", c);
         request.setAttribute("uvariable", uvariable);
         request.setAttribute("user", user);
