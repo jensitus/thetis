@@ -36,7 +36,10 @@ public class CrudPostDao extends BaseDao implements PostDao {
         ResultSet resultSet;
         Post post = null;
 
-        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id where post.id = ?;");
+        preparedStatement = getPreparedStatement("select " +
+                "post.id, post.title, post.body, post.userId, user.username " +
+                "from post inner join user on post.userId = user.id " +
+                "where post.id = ?;");
         try {
             preparedStatement.setInt(1, id1);
             resultSet = preparedStatement.executeQuery();
@@ -61,7 +64,8 @@ public class CrudPostDao extends BaseDao implements PostDao {
     public void updatePost(int id, String title, String body) {
         PreparedStatement preparedStatement;
 
-        preparedStatement = getPreparedStatement("update post set title = ?, body = ? where id = ?;");
+        preparedStatement = getPreparedStatement("update post set title = ?, body = ? " +
+                "where id = ?;");
         try {
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, body);
@@ -96,7 +100,11 @@ public class CrudPostDao extends BaseDao implements PostDao {
         List<Post> posts = new ArrayList<>();
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        preparedStatement = getPreparedStatement("select post.id, post.title, post.body, post.userId, user.username from post inner join user on post.userId = user.id;");
+        preparedStatement = getPreparedStatement("select " +
+                "post.id, post.title, post.body, post.userId, user.username " +
+                "from post inner join user " +
+                "on post.userId = user.id " +
+                "order by id desc;");
         try {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -125,7 +133,8 @@ public class CrudPostDao extends BaseDao implements PostDao {
                 "post.id, post.title, post.body, post.userId, user.username " +
                 "from post inner join user " +
                 "on post.userId = user.id " +
-                "where user.username = ?;");
+                "where user.username = ? " +
+                "order by id desc;");
         try {
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();
@@ -156,7 +165,8 @@ public class CrudPostDao extends BaseDao implements PostDao {
                 "from post, user, reader " +
                 "where user.id = reader.readerId " +
                 "and reader.toReadId = post.userId " +
-                "and user.username = ?;");
+                "and user.username = ? " +
+                "order by id desc;");
         try {
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();

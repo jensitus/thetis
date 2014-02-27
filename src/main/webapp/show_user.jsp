@@ -13,10 +13,8 @@
 <%@include file="include/navigation.jsp" %>
 <br>
 ${user.username}<br>
-${user.description}<br><br>
+<small>${user.description}</small><br><br>
 
-u: reader: ${u}<br>
-toRead: ${user.username}
 
 <c:if test="${u != user.username}">
     <c:choose>
@@ -38,10 +36,14 @@ toRead: ${user.username}
         </c:otherwise>
     </c:choose>
 </c:if>
+<br><br>
+<c:forEach items="${posts}" var="post">
 
-    ${uvariable}
-    <br>
-    c: ${c}
+        <a href="../post/?id=${post.id}">${post.title}</a><br>
+        ${post.body}<br>
+        <small>by: <a href="../user/?name=${post.username}">${post.username}</a></small><br><br>
+
+</c:forEach><br><br>
 
 </body>
 </html>

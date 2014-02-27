@@ -18,7 +18,7 @@ ${contactPosts}
 <c:forEach items="${contactPosts}" var="cp">
     <a href="post/?id=${cp.id}">${cp.title}</a><br>
     ${cp.body}<br>
-    ${cp.username}<br><br>
+    <small>by: <a href="../user/?name=${cp.username}">${cp.username}</a></small><br><br>
 
 </c:forEach>
 
