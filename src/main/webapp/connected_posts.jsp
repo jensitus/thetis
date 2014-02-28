@@ -13,7 +13,7 @@
 <%@include file="include/navigation.jsp" %>
 <br>
 
-${contactPosts}
+
 <br><br>
 <c:forEach items="${contactPosts}" var="cp">
     <a href="post/?id=${cp.id}">${cp.title}</a><br>
