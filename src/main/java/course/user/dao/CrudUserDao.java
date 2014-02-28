@@ -110,6 +110,28 @@ public class CrudUserDao extends BaseDao implements UserDao {
             closeConn();
         }
 
+        System.out.println(user);
+
         return user;
+    }
+
+    @Override
+    public void updateUser(String username, String description) {
+        PreparedStatement preparedStatement;
+
+        preparedStatement = getPreparedStatement("update user " +
+                "set description = ? where username = ?;");
+        try {
+            preparedStatement.setString(1, description);
+            preparedStatement.setString(2, username);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn();
+        }
+
     }
 }

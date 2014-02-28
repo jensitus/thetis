@@ -15,6 +15,9 @@
 ${user.username}<br>
 <small>${user.description}</small><br><br>
 
+<c:if test="${u == user.username}">
+    <a href="../update_user/?name=${user.username}">update</a>
+</c:if>
 
 <c:if test="${u != user.username}">
     <c:choose>

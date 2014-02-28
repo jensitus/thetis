@@ -21,12 +21,7 @@ ${post.body}<br>
         <c:choose>
             <c:when test="${u.equals(post.username)}">
                 <a href="../updatePost/?id=${post.id}">update</a>
-                <!--
-                <form action="../updatePost" method="post">
-                    <input type="hidden" name="id" value="${post.id}">
-                    <input type="submit" value="update">
-                </form>
-                -->
+
                 <form action="../deletePost" method="post">
                     <input type="hidden" name="id" value="${post.id}">
                     <input type="submit" value="delete" class="deletebutton">
