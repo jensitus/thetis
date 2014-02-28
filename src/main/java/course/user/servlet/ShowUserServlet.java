@@ -47,10 +47,6 @@ public class ShowUserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("../show_user.jsp");
         dispatcher.forward(request, response);
 
-
-
     }
-
-
 
 }

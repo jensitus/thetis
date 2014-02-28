@@ -11,7 +11,7 @@
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
-
+<br>
 <c:choose>
     <c:when test="${u.equals(post.username)}">
         <form action="../updatePost" method="post">

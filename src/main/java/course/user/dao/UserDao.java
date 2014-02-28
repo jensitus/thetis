@@ -11,5 +11,6 @@ public interface UserDao {
     public String loginUser(String user, String pass);
     public int getUserId(String username);
     public User readUser(String user);
+    public void updateUser(String username, String description);
 
 }
