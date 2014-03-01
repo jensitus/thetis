@@ -6,12 +6,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="/resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
 
+<div class="container">
 <h4>${post.title}</h4>
 ${post.body}<br>
 <small>
@@ -37,6 +38,8 @@ ${post.body}<br>
         login
     </c:if>
 </small>
+
+</div>
 
 </body>
 </html>

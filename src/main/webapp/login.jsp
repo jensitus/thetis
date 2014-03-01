@@ -5,23 +5,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
 
-${success}
-<br>
 
-<form action="login" method="post">
+<div class="container">
+    ${success}
+    <br>
+    <div class="form-group" style="width: 200px">
+        <form action="login" method="post" class="form-horizontal" role="form">
 
-    <input type="text" name="username" placeholder="username" class="input"><br>
-    <input type="password" name="password" placeholder="password" class="input"><br>
-    <input type="submit" value="press" class="button">
+            <input type="text" name="username" placeholder="username" class="form-control"><br>
+            <input type="password" name="password" placeholder="password" class="form-control"><br>
+            <input type="submit" value="press" class="btn btn-default">
 
-</form>
+        </form>
+    </div>
+
+</div>
 
 </body>
 </html>
