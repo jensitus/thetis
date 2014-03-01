@@ -5,24 +5,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
-<br>
 
-<form action="../update_user" method="post">
 
-    <input type="text" name="username" value="${user.username}" class="input"><br>
-    <textarea cols="40" rows="15" name="description" class="input">${user.description}</textarea><br>
-    <input type="submit" value="submit" class="button">
+<div class="container">
 
-</form>
+    <div class="form-group" style="width: 250px">
+        <form action="../update_user" method="post" class="form-signin" role="form">
 
-<br><br>
-${error}
+            <input type="text" name="username" value="${user.username}" class="form-control"><br>
+            <textarea cols="40" rows="15" name="description" class="form-control">${user.description}</textarea><br>
+            <input type="submit" value="submit" class="btn btn-default">
+
+        </form>
+
+        <br><br>
+        ${error}
+    </div>
+</div>
 
 </body>
 </html>

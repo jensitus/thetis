@@ -5,14 +5,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
 <%@include file="include/navigation.jsp" %>
 
-  <h4>Hi there</h4>
 
-  </body>
+<div class="container">
+  <h4>Hi there</h4>
+</div>
+
+
+</body>
 </html>
