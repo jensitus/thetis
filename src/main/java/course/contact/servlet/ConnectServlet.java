@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/connect_user")
 public class ConnectServlet extends HttpServlet {
@@ -32,12 +31,9 @@ public class ConnectServlet extends HttpServlet {
         CrudContactDao contactDao = new CrudContactDao();
         boolean c = contactDao.createContact(readerId, toReadId);
         if (c == true) {
-            PrintWriter out = response.getWriter();
-            out.println(reader + ": ");
-            out.println(readerId);
-            out.println("is now connected with: ");
-            out.println(toRead + " " + toReadId);
-
+            String succ = "You got the connection you wanted";
+            request.setAttribute("succ", succ);
+            response.sendRedirect("/user/?name=" + toRead);
         }
 
 
