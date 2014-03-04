@@ -13,31 +13,35 @@
 <%@include file="include/navigation.jsp" %>
 
 <div class="container">
-<h4>${post.title}</h4>
-${post.body}<br>
-<small>
-    by: <a href="../user/?name=${post.username}">${post.username}</a>
 
-    <c:if test="${u != null}">
-        <c:choose>
-            <c:when test="${u.equals(post.username)}">
-                <a href="../updatePost/?id=${post.id}">update</a>
+    <div style="width: 400px">
 
-                <form action="../deletePost" method="post">
-                    <input type="hidden" name="id" value="${post.id}">
-                    <input type="submit" value="delete" class="deletebutton">
-                </form>
-            </c:when>
-            <c:otherwise>
-                not authorized
-            </c:otherwise>
-        </c:choose>
-    </c:if>
+        <h4>${post.title}</h4>
+        ${post.body}<br>
+        <small>
+            by: <a href="../user/?name=${post.username}">${post.username}</a>
 
-    <c:if test="${u == null}">
-        login
-    </c:if>
-</small>
+            <c:if test="${u != null}">
+                <c:choose>
+                    <c:when test="${u.equals(post.username)}">
+                        <a href="../updatePost/?id=${post.id}">update</a>
+
+                        <form action="../deletePost" method="post">
+                            <input type="hidden" name="id" value="${post.id}">
+                            <input type="submit" value="delete" class="deletebutton">
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        not authorized
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+
+            <c:if test="${u == null}">
+                login
+            </c:if>
+        </small>
+    </div>
 
 </div>
 
