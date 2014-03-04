@@ -15,6 +15,8 @@
 
 <div class="container">
 
+    <h4>create a new post</h4>
+    <br>
     <div class="form-group" style="width: 400px">
 
         <form action="create" method="post">

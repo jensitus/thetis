@@ -188,6 +188,26 @@ public class CrudPostDao extends BaseDao implements PostDao {
         return conPosts;
     }
 
+    @Override
+    public int countPosts(int userId) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int cp = 0;
+        System.out.println(userId);
+        preparedStatement = getPreparedStatement("select count(*) as c from post where userId = ?;");
+        try {
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                cp = resultSet.getInt(1);
+                System.out.println(cp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cp;
+    }
+
 
     private String getUsername(int userId){
         PreparedStatement preparedStatement;

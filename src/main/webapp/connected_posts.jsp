@@ -17,10 +17,16 @@
 
 <div class="container">
 
+    <h4>the posts i am connected with</h4>
+
     <c:forEach items="${contactPosts}" var="cp">
-        <a href="post/?id=${cp.id}">${cp.title}</a><br>
-        ${cp.body}<br>
-        <small>by: <a href="../user/?name=${cp.username}">${cp.username}</a></small><br><br>
+        <div style="width: 400px">
+            <hr>
+            <a href="post/?id=${cp.id}">${cp.title}</a><br>
+            ${cp.body}<br>
+            <small>by: <a href="../user/?name=${cp.username}">${cp.username}</a></small><br>
+
+        </div>
 
     </c:forEach>
 
