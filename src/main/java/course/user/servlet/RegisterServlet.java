@@ -20,8 +20,6 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String description = request.getParameter("description");
 
-
-
         String successmessage = "passt, now login with your credentials";
         String errormessage = "maybe you're not the first, who likes this username";
 

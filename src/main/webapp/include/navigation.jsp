@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../">thetis</a>
+                <a class="navbar-brand" href="../" style="color: #000">project work</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,14 +28,7 @@
 
 
                 </ul>
-                <!--
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                -->
+
                 <ul class="nav navbar-nav navbar-right">
                     <% if (request.getAttribute("u") == null){ %>
                         <li><a href="../login">login</a></li>
