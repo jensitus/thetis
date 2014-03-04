@@ -37,10 +37,14 @@ public class ShowUserServlet extends HttpServlet {
 
         int userReaderId = crudUserDao.getUserId(uvariable);
         int userToReadId = crudUserDao.getUserId(userName);
+        System.out.println(userToReadId);
+
+        int countedPosts = postDao.countPosts(userToReadId);
 
         boolean c = contactDao.readConnectedUsers(userReaderId, userToReadId);
 
         request.setAttribute("posts", postByUser);
+        request.setAttribute("cp", countedPosts);
         request.setAttribute("c", c);
         request.setAttribute("uvariable", uvariable);
         request.setAttribute("user", user);

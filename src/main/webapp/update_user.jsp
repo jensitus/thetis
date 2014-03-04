@@ -17,11 +17,13 @@
 
 <div class="container">
 
+    <h4>update your profile</h4>
+    <br>
     <div class="form-group" style="width: 250px">
         <form action="../update_user" method="post" class="form-signin" role="form">
 
             <input type="text" name="username" value="${user.username}" class="form-control"><br>
-            <textarea cols="40" rows="15" name="description" class="form-control">${user.description}</textarea><br>
+            <textarea cols="31" rows="3" name="description" class="form-control">${user.description}</textarea><br>
             <input type="submit" value="submit" class="btn btn-default">
 
         </form>

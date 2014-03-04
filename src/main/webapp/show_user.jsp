@@ -16,41 +16,53 @@
 
 
 <div class="container">
-    ${user.username}<br>
-    <small>${user.description}</small><br><br>
+    <div class="row">
+        <div class="col-xs-6 col-md-4" style="border: 1px solid #eee; border-radius: 5px; padding: 10px">
+            <b>${user.username}</b><br>
+            <small>${user.description}</small>
 
-    <c:if test="${u == user.username}">
-        <a href="../update_user/?name=${user.username}">update</a>
-    </c:if>
+            <hr>
+            <c:if test="${u == user.username}">
+                <small><a href="../update_user/?name=${user.username}">update your profile</a></small>
+            </c:if>
 
-    <c:if test="${u != user.username}">
-        <c:choose>
-            <c:when test="${c == true}">
-                <form action="/disconnect_user" method="post">
+            <c:if test="${u != user.username}">
+                <c:choose>
+                    <c:when test="${c == true}">
+                        <form action="/disconnect_user" method="post">
+                            <input type="hidden" name="reader" value="${u}">
+                            <input type="hidden" name="toRead" value="${user.username}">
+                            <input type="submit" value="disconnect" class="btn btn-toolbar">
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="/connect_user" method="post">
+                            <input type="hidden" name="reader" value="${u}">
+                            <input type="hidden" name="toRead" value="${user.username}">
+                            <input type="submit" value="connect" class="btn btn-info">
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
 
-                    <input type="hidden" name="reader" value="${u}">
-                    <input type="hidden" name="toRead" value="${user.username}">
-                    <input type="submit" value="disconnect" class="btn btn-toolbar">
-                </form>
-            </c:when>
-            <c:otherwise>
-                <form action="/connect_user" method="post">
+            <hr>
+            Posts by ${user.username}: ${cp}
 
-                    <input type="hidden" name="reader" value="${u}">
-                    <input type="hidden" name="toRead" value="${user.username}">
-                    <input type="submit" value="connect" class="btn btn-info">
-                 </form>
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-    <br><br>
-    <c:forEach items="${posts}" var="post">
+        </div>
+    </div>
 
-            <a href="../post/?id=${post.id}">${post.title}</a><br>
-            ${post.body}<br>
-            <small>by: <a href="../user/?name=${post.username}">${post.username}</a></small><br><br>
 
-    </c:forEach><br><br>
+                <br>
+        <c:forEach items="${posts}" var="post">
+            <div style="width: 400px">
+                <a href="../post/?id=${post.id}">${post.title}</a><br>
+                ${post.body}<br>
+                <small>by: <a href="../user/?name=${post.username}">${post.username}</a></small>
+                <hr>
+            </div>
+
+        </c:forEach>
+
 
 </div>
 

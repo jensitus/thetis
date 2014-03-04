@@ -12,4 +12,5 @@ public interface PostDao {
     public List<Post> postList();
     public List<Post> postByUser(String user);
     public List<Post> contactPosts(String user);
+    public int countPosts(int userId);
 }
