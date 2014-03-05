@@ -42,7 +42,7 @@ public class UpdateSinglePostServlet extends HttpServlet {
 
         crudPostDao.updatePost(id1, title, body);
 
-        response.sendRedirect("posts");
+        response.sendRedirect("post/?id=" + id1);
 
     }
 }

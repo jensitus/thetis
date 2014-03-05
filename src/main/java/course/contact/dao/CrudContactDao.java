@@ -1,10 +1,13 @@
 package course.contact.dao;
 
 import course.dataaccess.BaseDao;
+import course.user.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jens on 2/25/14.
@@ -39,7 +42,10 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         int eins = 0;
         int zwei = 0;
 
-        preparedStatement = getPreparedStatement("select * from reader where readerId = ? and toReadId = ?;");
+        preparedStatement = getPreparedStatement("select * " +
+                "from reader " +
+                "where readerId = ? " +
+                "and toReadId = ?;");
         try {
             preparedStatement.setInt(1, userReaderId);
             preparedStatement.setInt(2, userToReadId);
@@ -67,7 +73,8 @@ public class CrudContactDao extends BaseDao implements ContactDao {
     public boolean deleteContact(int readerId, int toReadId) {
         PreparedStatement preparedStatement;
         boolean dc = false;
-        preparedStatement = getPreparedStatement("delete from reader where readerId = ? and toReadId = ?;");
+        preparedStatement = getPreparedStatement("delete from reader " +
+                "where readerId = ? and toReadId = ?;");
         try {
             preparedStatement.setInt(1, readerId);
             preparedStatement.setInt(2, toReadId);
@@ -83,6 +90,28 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         System.out.println("dc: ");
         System.out.println(dc);
         return dc;
+    }
+
+    @Override
+    public List<User> connectedUserList(int userReaderId) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        List<User> cU = new ArrayList<>();
+
+        preparedStatement = getPreparedStatement("select user.username, user.id from user, reader where toReadId = user.id and readerId = ?;");
+        try {
+            preparedStatement.setInt(1, userReaderId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                User user = new User(username);
+                cU.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(cU);
+        return cU;
     }
 
 }
