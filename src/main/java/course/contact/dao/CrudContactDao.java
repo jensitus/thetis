@@ -93,10 +93,10 @@ public class CrudContactDao extends BaseDao implements ContactDao {
     }
 
     @Override
-    public List<User> connectedWith(int userReaderId) {
+    public List<String> connectedWith(int userReaderId) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        List<User> cU = new ArrayList<>();
+        List<String> cU = new ArrayList<>();
 
         preparedStatement = getPreparedStatement("select user.username, user.id " +
                 "from user, reader " +
@@ -107,8 +107,7 @@ public class CrudContactDao extends BaseDao implements ContactDao {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
-                User user = new User(username);
-                cU.add(user);
+                cU.add(username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,10 +119,10 @@ public class CrudContactDao extends BaseDao implements ContactDao {
     }
 
     @Override
-    public List<User> connectedBy(int userToReadId) {
+    public List<String> connectedBy(int userToReadId) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        List<User> cB = new ArrayList<>();
+        List<String> cB = new ArrayList<>();
 
         preparedStatement = getPreparedStatement("select user.username, user.id " +
                 "from user, reader " +
@@ -134,8 +133,7 @@ public class CrudContactDao extends BaseDao implements ContactDao {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
-                User user = new User(username);
-                cB.add(user);
+                cB.add(username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
