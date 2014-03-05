@@ -16,8 +16,8 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="row" style="width: 700px; border-bottom: 1px solid #ccc; padding: 1px">
+        <div class="col-md-6" style="border: 0px solid #999; padding: 2px">
                 <!--
                 style="border: 1px solid #eee;
                     border-radius: 5px;
@@ -25,14 +25,12 @@
                     width: 350px;
                     ">
                 -->
-            <b>${user.username}</b><br>
-            <small>${user.description}</small>
+            <h4 style="color: #000">${user.username}</h4>
+            <span>${user.description}</span>
         </div>
-        <%--<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>--%>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 col-sm-4">
-            <hr>
+
+        <div class="col-md-5" style="border: 0px solid #999; padding: 15px">
+
             <c:if test="${u == user.username}">
                 <small>
                     <a href="../update_user/?name=${user.username}">update profile</a><br>
@@ -46,29 +44,39 @@
                         <form action="/disconnect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
-                            <input type="submit" value="disconnect" class="btn btn-toolbar">
+                            <input type="submit" value="disconnect" class="btn btn-group">
                         </form>
                     </c:when>
                     <c:otherwise>
                         <form action="/connect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
-                            <input type="submit" value="connect" class="btn btn-info">
+                            <input type="submit" value="connect" class="btn btn-group-lg">
                         </form>
                     </c:otherwise>
                 </c:choose>
             </c:if>
 
-            <hr>
-            Posts by ${user.username}: ${cp}<br>
-            Connected with:
-            <c:forEach items="${connectedWith}" var="cW">
-                <a href="../user/?name=${cW.username}">${cW.username}</a>
-            </c:forEach>
         </div>
     </div>
+    <div class="row" style="width: 700px;border-bottom: 1px solid #ccc; padding-top: 0px">
+        <div class="col-md-12" style="border: 0px solid #999; padding: 4px">
+            <small>
+                Posts by ${user.username}: ${cp}<br>
+                Connected with:
+                <c:forEach items="${connectedWith}" var="cW">
+                    <a href="../user/?name=${cW.username}">${cW.username}</a>
+                </c:forEach><br>
+                Connected By:
+                <c:forEach items="${connectedBy}" var="cB">
+                    <a href="../user/?name=${cB.username}">${cB.username}</a>
+                </c:forEach>
+            </small>
+        </div>
 
-    <hr>
+    </div>
+
+        <br>
 
         <c:forEach items="${posts}" var="post">
             <div style="width: 400px">

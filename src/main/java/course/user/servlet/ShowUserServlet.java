@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/user/*")
@@ -43,12 +42,16 @@ public class ShowUserServlet extends HttpServlet {
 
         boolean c = contactDao.readConnectedUsers(userReaderId, userToReadId);
 
-        List<User> connectedUser;
-        connectedUser = contactDao.connectedUserList(userToReadId);
+        List<User> connectedWith;
+        connectedWith = contactDao.connectedWith(userToReadId);
 
-        System.out.println(connectedUser);
+        List<User> connectedBy;
+        connectedBy = contactDao.connectedBy(userToReadId);
 
-        request.setAttribute("connectedWith", connectedUser);
+        System.out.println(connectedWith);
+
+        request.setAttribute("connectedBy", connectedBy);
+        request.setAttribute("connectedWith", connectedWith);
         request.setAttribute("posts", postByUser);
         request.setAttribute("cp", countedPosts);
         request.setAttribute("c", c);

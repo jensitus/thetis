@@ -93,12 +93,15 @@ public class CrudContactDao extends BaseDao implements ContactDao {
     }
 
     @Override
-    public List<User> connectedUserList(int userReaderId) {
+    public List<User> connectedWith(int userReaderId) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         List<User> cU = new ArrayList<>();
 
-        preparedStatement = getPreparedStatement("select user.username, user.id from user, reader where toReadId = user.id and readerId = ?;");
+        preparedStatement = getPreparedStatement("select user.username, user.id " +
+                "from user, reader " +
+                "where toReadId = user.id " +
+                "and readerId = ?;");
         try {
             preparedStatement.setInt(1, userReaderId);
             resultSet = preparedStatement.executeQuery();
@@ -109,9 +112,37 @@ public class CrudContactDao extends BaseDao implements ContactDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConn();
         }
         System.out.println(cU);
         return cU;
+    }
+
+    @Override
+    public List<User> connectedBy(int userToReadId) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        List<User> cB = new ArrayList<>();
+
+        preparedStatement = getPreparedStatement("select user.username, user.id " +
+                "from user, reader " +
+                "where readerId = user.id " +
+                "and toReadId = ?;");
+        try {
+            preparedStatement.setInt(1, userToReadId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                User user = new User(username);
+                cB.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn();
+        }
+        return cB;
     }
 
 }
