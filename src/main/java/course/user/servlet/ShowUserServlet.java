@@ -42,16 +42,36 @@ public class ShowUserServlet extends HttpServlet {
 
         boolean c = contactDao.readConnectedUsers(userReaderId, userToReadId);
 
-        List<User> connectedWith;
+        List<String> connectedWith;
         connectedWith = contactDao.connectedWith(userToReadId);
 
-        List<User> connectedBy;
+        StringBuilder connWith = new StringBuilder();
+        for ( String cw : connectedWith ) {
+            cw = "<a href=" + "\"../user/?name=" + cw + "\">" + cw + "</a>";
+            if (connWith.length() > 0) {
+                connWith.append(", ");
+            }
+            connWith.append(cw);
+        }
+
+
+
+        List<String> connectedBy;
         connectedBy = contactDao.connectedBy(userToReadId);
+
+        StringBuilder conBy = new StringBuilder();
+        for (String cb : connectedBy) {
+            cb = "<a href=" + "\"../user/?name=" + cb + "\">" + cb + "</a>";
+            if (conBy.length() > 0) {
+                conBy.append(", ");
+            }
+            conBy.append(cb);
+        }
 
         System.out.println(connectedWith);
 
-        request.setAttribute("connectedBy", connectedBy);
-        request.setAttribute("connectedWith", connectedWith);
+        request.setAttribute("connectedBy", conBy);
+        request.setAttribute("connectedWith", connWith);
         request.setAttribute("posts", postByUser);
         request.setAttribute("cp", countedPosts);
         request.setAttribute("c", c);
