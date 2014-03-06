@@ -1,7 +1,9 @@
 package course.post.servlet;
 
+import course.dataaccess.MysqlDaoFactory;
 import course.post.dao.CrudPostDao;
-import course.user.dao.CrudUserDao;
+import course.post.dao.PostDao;
+import course.user.dao.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,9 @@ import java.io.IOException;
 
 @WebServlet("/create")
 public class CreatePostServlet extends HttpServlet {
+    private UserDao crudUserDao = MysqlDaoFactory.getInstance().getUserDao();
+    private PostDao crudPostDao = new CrudPostDao();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String title = request.getParameter("title");
@@ -32,15 +37,9 @@ public class CreatePostServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("createPost.jsp");
             dispatcher.forward(request,response);
         } else {
-
-            CrudUserDao crudUserDao = new CrudUserDao();
             userId = crudUserDao.getUserId(username);
-
-            CrudPostDao crudPostDao = new CrudPostDao();
             crudPostDao.createPost(title, body, userId);
-
             response.sendRedirect("/user/?name=" + username);
-
         }
 
         //RequestDispatcher dispatcher = request.getRequestDispatcher("");

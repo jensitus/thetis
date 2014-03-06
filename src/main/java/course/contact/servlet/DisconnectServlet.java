@@ -1,7 +1,8 @@
 package course.contact.servlet;
 
 import course.contact.dao.CrudContactDao;
-import course.user.dao.CrudUserDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.user.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,7 @@ public class DisconnectServlet extends HttpServlet {
         String reader = request.getParameter("reader");
         String toRead = request.getParameter("toRead");
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
 
         int readerId = crudUserDao.getUserId(reader);
         int toReadId = crudUserDao.getUserId(toRead);

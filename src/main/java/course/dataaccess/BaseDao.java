@@ -11,12 +11,13 @@ public abstract class BaseDao extends DataSource {
 
     private Connection connection;
 
-    protected Connection getDataSource() {
-        try {
-            connection = connectDb();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    protected BaseDao()
+    {
+      super();
+    }
+
+  protected Connection getDataSource() {
+        connection = connectDb();
         return connection;
     }
 
@@ -26,6 +27,7 @@ public abstract class BaseDao extends DataSource {
 
         try {
             connection = (Connection) getDataSource();
+
             preparedStatement = connection.prepareStatement(sql);
         } catch (SQLException e) {
             e.printStackTrace();

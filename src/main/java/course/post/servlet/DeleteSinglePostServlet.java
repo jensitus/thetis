@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet("/deletePost")
 public class DeleteSinglePostServlet extends HttpServlet {
+    private CrudPostDao crudPostDao = new CrudPostDao();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,7 +21,6 @@ public class DeleteSinglePostServlet extends HttpServlet {
         //req.getAttribute("u");
         int id = Integer.parseInt(aidee);
 
-        CrudPostDao crudPostDao = new CrudPostDao();
         crudPostDao.deletePost(id);
 
         resp.sendRedirect("posts");
