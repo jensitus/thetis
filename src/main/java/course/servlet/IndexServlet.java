@@ -17,4 +17,5 @@ public class IndexServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
 
     }
+
 }

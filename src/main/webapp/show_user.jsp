@@ -63,14 +63,11 @@
         <div class="col-md-12" style="border: 0px solid #999; padding: 4px">
             <small>
                 Posts by ${user.username}: ${cp}<br>
-                Connected with:
-                <c:forEach items="${connectedWith}" var="cW">
-                    <a href="../user/?name=${cW.username}">${cW.username}</a>
-                </c:forEach><br>
-                Connected By:
-                <c:forEach items="${connectedBy}" var="cB">
-                    <a href="../user/?name=${cB.username}">${cB.username}</a>
-                </c:forEach>
+                connected with:
+                ${connectedWith}
+                 <br>
+                connected by:
+                ${connectedBy}
             </small>
         </div>
 
