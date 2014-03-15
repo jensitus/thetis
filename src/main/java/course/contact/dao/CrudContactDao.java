@@ -1,7 +1,6 @@
 package course.contact.dao;
 
 import course.dataaccess.BaseDao;
-import course.user.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,8 +52,6 @@ public class CrudContactDao extends BaseDao implements ContactDao {
             while (resultSet.next()) {
                 eins = resultSet.getInt("readerId");
                 zwei = resultSet.getInt("toReadId");
-                System.out.println(eins);
-                System.out.println(zwei);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,8 +84,6 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         } finally {
             closeConn();
         }
-        System.out.println("dc: ");
-        System.out.println(dc);
         return dc;
     }
 
@@ -101,7 +96,8 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         preparedStatement = getPreparedStatement("select user.username, user.id " +
                 "from user, reader " +
                 "where toReadId = user.id " +
-                "and readerId = ?;");
+                "and readerId = ? " +
+                "and readerId != toReadId;");
         try {
             preparedStatement.setInt(1, userReaderId);
             resultSet = preparedStatement.executeQuery();
@@ -114,7 +110,6 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         } finally {
             closeConn();
         }
-        System.out.println(cU);
         return cU;
     }
 
@@ -127,7 +122,8 @@ public class CrudContactDao extends BaseDao implements ContactDao {
         preparedStatement = getPreparedStatement("select user.username, user.id " +
                 "from user, reader " +
                 "where readerId = user.id " +
-                "and toReadId = ?;");
+                "and toReadId = ? " +
+                "and readerId != toReadId;");
         try {
             preparedStatement.setInt(1, userToReadId);
             resultSet = preparedStatement.executeQuery();

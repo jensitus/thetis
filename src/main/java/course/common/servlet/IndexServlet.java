@@ -1,4 +1,4 @@
-package course.servlet;
+package course.common.servlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

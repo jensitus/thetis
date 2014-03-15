@@ -2,12 +2,13 @@ package course.user.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = {"/*"}, initParams = @WebInitParam(name="Auth", value = "annotation"))
 public class AuthFilter implements Filter {
 
     @Override

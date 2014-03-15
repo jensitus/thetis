@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- /home/jens/workspace/examples/javaKurs/thetis/src/main/webapp/resources/css/bootstrap.min.css -->
     <title></title>
 </head>
 <body>
@@ -16,10 +17,11 @@
 
 
 <div class="container">
-    <div class="col-lg-1">
-        <h4>Hi there</h4>
+    <div class="row">
+
         <span class="col-md-4">
-            Welcome on Board at our Project Work. We're doing a Software Developer Course at
+            <h4>Hi there</h4>
+            <b>Welcome on Board!</b> This is our Project Work. We're doing a Software Developer Course at
             the Wifi Wien and are now on our way straight foreward to the examination. This application
             you are standing in front of is a very important part of this survey.<br>
             Once you registered yourself you are a normal user who can create, update and delete
