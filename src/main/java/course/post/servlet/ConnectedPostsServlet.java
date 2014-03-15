@@ -24,14 +24,18 @@ public class ConnectedPostsServlet extends HttpServlet {
         String user = (String) session.getAttribute("user");
         String u = (String) request.getAttribute("u");
 
-        if (u.equals(user)) {
-            CrudPostDao postDao = new CrudPostDao();
-            List<Post> contactPosts = postDao.contactPosts(user);
-            request.setAttribute("contactPosts", contactPosts);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("connected_posts.jsp");
-            dispatcher.forward(request, response);
+        if (user != null) {
+            if (u.equals(user)) {
+                CrudPostDao postDao = new CrudPostDao();
+                List<Post> contactPosts = postDao.contactPosts(user);
+                request.setAttribute("contactPosts", contactPosts);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("connected_posts.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                response.sendRedirect("/thetis-1/index");
+            }
         } else {
-            response.sendRedirect("index");
+            response.sendRedirect("/thetis-1/login");
         }
 
     }

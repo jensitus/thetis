@@ -8,21 +8,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../" style="color: #000">project work</a>
+                <a class="navbar-brand" href="/thetis-1/connected_posts" style="color: #000">project work</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
-                    <li><a href="../index">index</a></li>
-                    <li><a href="../posts">post</a></li>
+                    <li><a href="/thetis-1/index">index</a></li>
+                    <li><a href="/thetis-1/posts">all posts</a></li>
 
                     <% if (request.getAttribute("u") == null){ %>
 
                     <% } else { %>
-                        <li><a href="../create">create</a></li>
-                        <li><a href="../connected_posts">connects</a></li>
+                        <li><a href="/thetis-1/create">create</a></li>
+                        <li><a href="/thetis-1/connected_posts">my connections</a></li>
                     <% } %>
 
 
@@ -31,11 +31,11 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <% if (request.getAttribute("u") == null){ %>
-                        <li><a href="../login">login</a></li>
-                        <li><a href="../register">register</a></li>
+                        <li><a href="/thetis-1/login">login</a></li>
+                        <li><a href="/thetis-1/register">register</a></li>
                     <% } else { %>
-                        <li><a href='../user/?name=<%= request.getAttribute("u") %>'><%= request.getAttribute("u") %></a></li>
-                        <li><a href="../logout">logout</a></li>
+                        <li><a href='/thetis-1/user/?name=<%= request.getAttribute("u") %>'><%= request.getAttribute("u") %></a></li>
+                        <li><a href="/thetis-1/logout">logout</a></li>
                     <% } %>
                 </ul>
             </div><!-- /.navbar-collapse -->

@@ -109,9 +109,6 @@ public class CrudUserDao extends BaseDao implements UserDao {
         } finally {
             closeConn();
         }
-
-        System.out.println(user);
-
         return user;
     }
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/thetis-1/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
@@ -24,7 +24,7 @@
             <hr>
             <a href="post/?id=${cp.id}">${cp.title}</a><br>
             ${cp.body}<br>
-            <small>by: <a href="../user/?name=${cp.username}">${cp.username}</a></small><br>
+            <small>by: <a href="user/?name=${cp.username}">${cp.username}</a></small><br>
 
         </div>
 

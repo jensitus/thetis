@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <title></title>
 </head>
 <body>
@@ -41,14 +41,14 @@
             <c:if test="${u != user.username}">
                 <c:choose>
                     <c:when test="${c == true}">
-                        <form action="/disconnect_user" method="post">
+                        <form action="/thetis-1/disconnect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
                             <input type="submit" value="disconnect" class="btn btn-group">
                         </form>
                     </c:when>
                     <c:otherwise>
-                        <form action="/connect_user" method="post">
+                        <form action="/thetis-1/connect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
                             <input type="submit" value="connect" class="btn btn-group-lg">

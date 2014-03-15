@@ -1,5 +1,5 @@
-drop table if exists reader;
-
+# drop table if exists reader;
+#
 # drop table if exists post;
 # drop table if exists user;
 #
@@ -19,10 +19,10 @@ drop table if exists reader;
 #   userId int not null,
 #   primary key(id)
 # );
-
-create table reader(
-  id int not null auto_increment,
-  readerId int,
-  toReadId int,
-  primary key(id)
-);
+#
+# create table reader(
+#   id int not null auto_increment,
+#   readerId int,
+#   toReadId int,
+#   primary key(id)
+# );

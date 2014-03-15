@@ -15,8 +15,6 @@ public class LoginServlet extends HttpServlet {
 
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-        //String sql = "select * from user where username = ?;";
-
         HttpSession httpSession = request.getSession();
         String sessionId = httpSession.getId();
 
@@ -32,7 +30,7 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie(username, sessionId);
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
-            response.sendRedirect("user/?name=" + username);
+            response.sendRedirect("connected_posts");
         }
     }
 

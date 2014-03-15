@@ -24,7 +24,7 @@ public class DisconnectServlet extends HttpServlet {
         CrudContactDao contactDao = new CrudContactDao();
         boolean c = contactDao.deleteContact(readerId, toReadId);
         if (c == true) {
-            response.sendRedirect("/user/?name=" + toRead);
+            response.sendRedirect("/thetis-1/user/?name=" + toRead);
         } else {
 
         }

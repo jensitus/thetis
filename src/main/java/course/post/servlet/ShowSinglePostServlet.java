@@ -2,7 +2,6 @@ package course.post.servlet;
 
 import course.post.dao.CrudPostDao;
 import course.post.model.Post;
-import course.servlet.IndexServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("post/*")
+@WebServlet("/post/*")
 public class ShowSinglePostServlet extends HttpServlet {
 
     @Override

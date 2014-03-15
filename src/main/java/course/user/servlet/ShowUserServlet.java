@@ -68,8 +68,6 @@ public class ShowUserServlet extends HttpServlet {
             conBy.append(cb);
         }
 
-        System.out.println(connectedWith);
-
         request.setAttribute("connectedBy", conBy);
         request.setAttribute("connectedWith", connWith);
         request.setAttribute("posts", postByUser);

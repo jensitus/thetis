@@ -1,5 +1,6 @@
 package course.user.servlet;
 
+import course.contact.dao.CrudContactDao;
 import course.user.dao.CrudUserDao;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
@@ -25,18 +26,20 @@ public class RegisterServlet extends HttpServlet {
 
         PasswordService passwordService = new DefaultPasswordService();
         String encryptedPassword = passwordService.encryptPassword(password);
-        //String sql = "insert into user(username, password) values(?,?);";
+
         CrudUserDao userDao = new CrudUserDao();
+        CrudContactDao contactDao = new CrudContactDao();
+
         boolean cu = userDao.createUser(username, encryptedPassword, description);
         if (cu == true) {
-            request.setAttribute("success", successmessage);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login");
-            dispatcher.forward(request,response);
-            //response.sendRedirect("login");
+            int uId = userDao.getUserId(username);
+            boolean c = contactDao.createContact(uId, uId);
+            if (c == true) {
+                request.setAttribute("success", successmessage);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login");
+                dispatcher.forward(request,response);
+            }
         } else {
-            //request.setAttribute("error", errormessage);
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("index");
-            //dispatcher.forward(request,response);
             PrintWriter out = response.getWriter();
             out.println("<font color=red>it is wrong</font>");
         }

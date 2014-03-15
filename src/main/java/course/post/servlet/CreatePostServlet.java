@@ -39,7 +39,7 @@ public class CreatePostServlet extends HttpServlet {
             CrudPostDao crudPostDao = new CrudPostDao();
             crudPostDao.createPost(title, body, userId);
 
-            response.sendRedirect("/user/?name=" + username);
+            response.sendRedirect("/thetis-1/user/?name=" + username);
 
         }
 

@@ -2,13 +2,14 @@ package course.user.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/create", "/updatePost/*", "/deletePost/*", "/connect_user", "/update_user/*"})
+@WebFilter(urlPatterns = {"/create", "/updatePost/*", "/deletePost/*", "/connect_user", "/update_user/*"}, initParams = @WebInitParam(name="login", value="annotation"))
 public class LoginFilter implements Filter {
 
     public void destroy() {
@@ -39,13 +40,10 @@ public class LoginFilter implements Filter {
             }
         }
 
-        System.out.println(sessionID);
-        System.out.println(userSessionID);
-
         if (sessionID.equals(userSessionID)){
-            System.out.println("true");
+            //System.out.println("true");
         } else {
-            ((HttpServletResponse) response).sendRedirect("/login");
+            ((HttpServletResponse) response).sendRedirect("/thetis-1/login");
             return;
         }
 

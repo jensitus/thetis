@@ -23,7 +23,7 @@ public class UpdateUserServlet extends HttpServlet {
         CrudUserDao crudUserDao = new CrudUserDao();
         crudUserDao.updateUser(username, description);
 
-        response.sendRedirect("/user/?name=" + username);
+        response.sendRedirect("/thetis-1/user/?name=" + username);
 
 
     }

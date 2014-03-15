@@ -16,15 +16,13 @@ public class ConnectServlet extends HttpServlet {
         String reader = request.getParameter("reader");
         String toRead = request.getParameter("toRead");
 
-        String u_variable = (String) request.getAttribute("u");
-
-
+        //String u_variable = (String) request.getAttribute("u");
 
         int readerId;
         int toReadId;
         CrudUserDao crudUserDao = new CrudUserDao();
 
-        int uvId = crudUserDao.getUserId(u_variable);
+        //int uvId = crudUserDao.getUserId(u_variable);
         readerId = crudUserDao.getUserId(reader);
         toReadId = crudUserDao.getUserId(toRead);
 
@@ -33,7 +31,7 @@ public class ConnectServlet extends HttpServlet {
         if (c == true) {
             String succ = "You got the connection you wanted";
             request.setAttribute("succ", succ);
-            response.sendRedirect("/user/?name=" + toRead);
+            response.sendRedirect("/thetis-1/user/?name=" + toRead);
         }
 
 

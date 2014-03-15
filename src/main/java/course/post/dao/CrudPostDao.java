@@ -50,7 +50,7 @@ public class CrudPostDao extends BaseDao implements PostDao {
                 int userId = resultSet.getInt("userId");
                 String username = resultSet.getString("username");
                 post = new Post(id, title, body, userId, username);
-                System.out.println(post);
+                //System.out.println(post);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -193,14 +193,14 @@ public class CrudPostDao extends BaseDao implements PostDao {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         int cp = 0;
-        System.out.println(userId);
+        //System.out.println(userId);
         preparedStatement = getPreparedStatement("select count(*) as c from post where userId = ?;");
         try {
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 cp = resultSet.getInt(1);
-                System.out.println(cp);
+                //System.out.println(cp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
