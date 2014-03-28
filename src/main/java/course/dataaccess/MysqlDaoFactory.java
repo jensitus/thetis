@@ -33,8 +33,7 @@ public class MysqlDaoFactory
   private javax.sql.DataSource dataSource;
   private UserDao userDao;
 
-  private MysqlDaoFactory()
-  {
+  private MysqlDaoFactory() {
     if (instance != null) throw new IllegalStateException("This is a singleton, don't mess with it!");
     try {
       setup();
@@ -47,13 +46,11 @@ public class MysqlDaoFactory
     return instance;
   }
 
-  public UserDao getUserDao()
-  {
+  public UserDao getUserDao() {
     return userDao;
   }
 
-  private void setup() throws IOException
-  {
+  private void setup() throws IOException {
     logger.info("setting up mysql dao factory");
     //setup data source
     this.dataSource = initDataSource();
@@ -63,21 +60,31 @@ public class MysqlDaoFactory
     logger.debug("finished setting up mysql dao factory");
   }
 
-  private DataSource initDataSource() throws IOException
-  {
-    logger.info("loading database.properties");
-    Properties properties = new Properties();
-    properties.load(DataSource.class.getClassLoader().getResourceAsStream("database.properties"));
-    logger.info("creating datasource");
-    com.mysql.jdbc.jdbc2.optional.MysqlDataSource ds
-        = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
-    String jdbcUrl = properties.getProperty("jdbc.url");
-    String jdbcUser = properties.getProperty("jdbc.username");
-    String jdbcPassword = properties.getProperty("jdbc.password");
-    ds.setUrl(jdbcUrl);
-    ds.setUser(jdbcUser);
-    ds.setPassword(jdbcPassword);
-    return ds;
-  }
+    private DataSource initDataSource() throws IOException {
+        logger.info("loading database.properties");
+        Properties properties = new Properties();
+        System.out.println("properties_vorher: ");
+        System.out.println(properties);
+        try {
+            properties.load(DataSource.class.getClassLoader().getResourceAsStream("database.properties"));
+        } catch (IOException e) {
+            System.out.println("properties: ");
+            System.out.println(properties);
+            System.out.println("e: ");
+            System.out.println(e.toString());
+        }
+        System.out.println("properties: ");
+        System.out.println(properties);
+        logger.info("creating datasource");
+        com.mysql.jdbc.jdbc2.optional.MysqlDataSource ds
+            = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
+        String jdbcUrl = properties.getProperty("jdbc.url");
+        String jdbcUser = properties.getProperty("jdbc.username");
+        String jdbcPassword = properties.getProperty("jdbc.password");
+        ds.setUrl(jdbcUrl);
+        ds.setUser(jdbcUser);
+        ds.setPassword(jdbcPassword);
+        return ds;
+    }
 }
 

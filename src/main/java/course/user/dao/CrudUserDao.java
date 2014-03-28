@@ -5,6 +5,7 @@ import course.user.model.User;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 public class CrudUserDao extends NewBaseDao implements UserDao {
 
 
-    public CrudUserDao(final javax.sql.DataSource dataSource)
+    public CrudUserDao(final DataSource dataSource)
     {
       super(dataSource);
     }

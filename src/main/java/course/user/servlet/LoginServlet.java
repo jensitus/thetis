@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
         String sessionId = httpSession.getId();
 
-        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
+        UserDao crudUserDao = MysqlDaoFactory.getInstance().getUserDao();
         String username;
         username = crudUserDao.loginUser(user, pass);
 

@@ -24,12 +24,10 @@ import java.sql.SQLException;
  * User: fkleedorfer
  * Date: 06.03.14
  */
-public class NewBaseDao
-{
+public class NewBaseDao {
   private javax.sql.DataSource dataSource;
 
-  public NewBaseDao(final javax.sql.DataSource dataSource)
-  {
+  public NewBaseDao(final javax.sql.DataSource dataSource) {
     this.dataSource = dataSource;
   }
 
@@ -55,8 +53,7 @@ public class NewBaseDao
     }
   }
 
-  protected javax.sql.DataSource getDataSource()
-  {
+  protected javax.sql.DataSource getDataSource() {
     return dataSource;
   }
 }
