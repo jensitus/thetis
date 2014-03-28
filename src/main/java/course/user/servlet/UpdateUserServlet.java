@@ -1,6 +1,7 @@
 package course.user.servlet;
 
-import course.user.dao.CrudUserDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.user.dao.UserDao;
 import course.user.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ public class UpdateUserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String description = request.getParameter("description");
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
         crudUserDao.updateUser(username, description);
 
         response.sendRedirect("/thetis-1/user/?name=" + username);
@@ -33,7 +34,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         String name = request.getParameter("name");
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
 
         System.out.println(name);
 

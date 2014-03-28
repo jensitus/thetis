@@ -1,24 +1,32 @@
 package course.user.dao;
 
-import course.dataaccess.BaseDao;
+import course.dataaccess.NewBaseDao;
 import course.user.model.User;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CrudUserDao extends BaseDao implements UserDao {
+public class CrudUserDao extends NewBaseDao implements UserDao {
 
-    @Override
+
+    public CrudUserDao(final javax.sql.DataSource dataSource)
+    {
+      super(dataSource);
+    }
+
+  @Override
     public boolean createUser(String username, String encryptedPassword, String description) {
 
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement = null;
         boolean r;
-
-        preparedStatement = getPreparedStatement("insert into user(username, password, description) values(?,?,?);");
+        Connection con = null;
         try {
+            con = getDataSource().getConnection();
+            preparedStatement = getPreparedStatement(con,"insert into user(username, password, description) values(?,?,?);");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, encryptedPassword);
             preparedStatement.setString(3, description);
@@ -29,7 +37,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
             System.out.println(e.toString()); //.printStackTrace();
             r = false;
         } finally {
-            closeConn();
+            closeConn(con);
         }
         return r;
 
@@ -43,8 +51,10 @@ public class CrudUserDao extends BaseDao implements UserDao {
         PasswordService passwordService = new DefaultPasswordService();
         String username = null;
         String password = null;
-        preparedStatement = getPreparedStatement("select * from user where username = ?;");
+        Connection con = null;
         try {
+            con = getDataSource().getConnection();
+            preparedStatement = getPreparedStatement(con,"select * from user where username = ?;");
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -54,7 +64,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConn();
+            closeConn(con);
         }
         if (passwordService.passwordsMatch(pass, password)){
             return username;
@@ -69,9 +79,10 @@ public class CrudUserDao extends BaseDao implements UserDao {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         int userId = 0;
-
-        preparedStatement = getPreparedStatement("select * from user where username = ?;");
+        Connection con = null;
         try {
+            con = getDataSource().getConnection();
+            preparedStatement = getPreparedStatement(con, "select * from user where username = ?;");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -80,7 +91,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConn();
+            closeConn(con);
         }
 
         return userId;
@@ -94,8 +105,10 @@ public class CrudUserDao extends BaseDao implements UserDao {
         int id;
         String username;
         String description;
-        preparedStatement = getPreparedStatement("select * from user where username = ?;");
+        Connection con = null;
         try {
+            con = getDataSource().getConnection();
+            preparedStatement = getPreparedStatement(con,"select * from user where username = ?;");
             preparedStatement.setString(1, userName);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -107,7 +120,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConn();
+            closeConn(con);
         }
         return user;
     }
@@ -115,10 +128,11 @@ public class CrudUserDao extends BaseDao implements UserDao {
     @Override
     public void updateUser(String username, String description) {
         PreparedStatement preparedStatement;
-
-        preparedStatement = getPreparedStatement("update user " +
-                "set description = ? where username = ?;");
+        Connection con = null;
         try {
+            con = getDataSource().getConnection();
+            preparedStatement = getPreparedStatement(con,"update user " +
+              "set description = ? where username = ?;");
             preparedStatement.setString(1, description);
             preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
@@ -127,7 +141,7 @@ public class CrudUserDao extends BaseDao implements UserDao {
             e.printStackTrace();
 
         } finally {
-            closeConn();
+            closeConn(con);
         }
 
     }

@@ -1,6 +1,7 @@
 package course.user.servlet;
 
-import course.user.dao.CrudUserDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.user.dao.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
         String sessionId = httpSession.getId();
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
         String username;
         username = crudUserDao.loginUser(user, pass);
 
