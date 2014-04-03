@@ -1,6 +1,7 @@
 package course.post.servlet;
 
-import course.post.dao.CrudPostDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.post.dao.PostDao;
 import course.post.model.Post;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,7 @@ public class PostsByUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String user = request.getParameter("user");
-        CrudPostDao crudPostDao = new CrudPostDao();
+        PostDao crudPostDao = MysqlDaoFactory.getInstance().getPostDao();
         List<Post> posts = crudPostDao.postByUser(user);
 
         request.setAttribute("posts", posts);

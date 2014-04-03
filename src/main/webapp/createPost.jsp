@@ -30,7 +30,9 @@
     <br>
     ${error}
 
+    ${title}
     ${body}
+    ${answeredPostId}
 
 </div>
 

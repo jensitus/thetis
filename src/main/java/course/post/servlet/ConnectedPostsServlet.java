@@ -1,6 +1,7 @@
 package course.post.servlet;
 
-import course.post.dao.CrudPostDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.post.dao.PostDao;
 import course.post.model.Post;
 
 import javax.servlet.RequestDispatcher;
@@ -26,16 +27,16 @@ public class ConnectedPostsServlet extends HttpServlet {
 
         if (user != null) {
             if (u.equals(user)) {
-                CrudPostDao postDao = new CrudPostDao();
+                PostDao postDao = MysqlDaoFactory.getInstance().getPostDao();
                 List<Post> contactPosts = postDao.contactPosts(user);
                 request.setAttribute("contactPosts", contactPosts);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("connected_posts.jsp");
                 dispatcher.forward(request, response);
             } else {
-                response.sendRedirect("/thetis-1/index");
+                response.sendRedirect("/index");
             }
         } else {
-            response.sendRedirect("/thetis-1/login");
+            response.sendRedirect("/login");
         }
 
     }

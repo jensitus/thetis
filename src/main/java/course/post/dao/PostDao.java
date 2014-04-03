@@ -5,12 +5,15 @@ import course.post.model.Post;
 import java.util.List;
 
 public interface PostDao {
-    public void createPost(String title, String body, int userId);
-    public Post readPost(int id);
-    public void updatePost(int id, String title, String body);
-    public void deletePost(int id);
-    public List<Post> postList();
-    public List<Post> postByUser(String user);
-    public List<Post> contactPosts(String user);
-    public int countPosts(int userId);
+    void createPost(String title, String body, int userId, int answeredPostId);
+    Post readPost(int id);
+    void updatePost(int id, String title, String body);
+    void deletePost(int id);
+    List<Post> postList();
+    List<Post> postByUser(String user);
+    List<Post> contactPosts(String user);
+    int countPosts(int userId);
+    List<Integer> getAnsweringPostId(int postId);
+    List<Post> answeringPosts(List<Integer> answeringPostId);
+    int answeredPostId (int postId);
 }

@@ -1,6 +1,7 @@
 package course.post.servlet;
 
-import course.post.dao.CrudPostDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.post.dao.PostDao;
 import course.post.model.Post;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ public class UpdateSinglePostServlet extends HttpServlet {
         String aidee = request.getParameter("id");
         int id1 = Integer.parseInt(aidee);
 
-        CrudPostDao crudPostDao = new CrudPostDao();
+        PostDao crudPostDao = MysqlDaoFactory.getInstance().getPostDao();
         Post post;
 
         post = crudPostDao.readPost(id1);
@@ -38,7 +39,7 @@ public class UpdateSinglePostServlet extends HttpServlet {
         String title = request.getParameter("title");
         String body = request.getParameter("body");
 
-        CrudPostDao crudPostDao = new CrudPostDao();
+        PostDao crudPostDao = MysqlDaoFactory.getInstance().getPostDao();
 
         crudPostDao.updatePost(id1, title, body);
 

@@ -1,7 +1,8 @@
 package course.contact.servlet;
 
-import course.contact.dao.CrudContactDao;
-import course.user.dao.CrudUserDao;
+import course.contact.dao.ContactDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.user.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +17,15 @@ public class DisconnectServlet extends HttpServlet {
         String reader = request.getParameter("reader");
         String toRead = request.getParameter("toRead");
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
 
         int readerId = crudUserDao.getUserId(reader);
         int toReadId = crudUserDao.getUserId(toRead);
 
-        CrudContactDao contactDao = new CrudContactDao();
+        ContactDao contactDao = MysqlDaoFactory.getInstance().getContactDao();
         boolean c = contactDao.deleteContact(readerId, toReadId);
         if (c == true) {
-            response.sendRedirect("/thetis-1/user/?name=" + toRead);
+            response.sendRedirect("/user/?name=" + toRead);
         } else {
 
         }

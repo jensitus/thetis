@@ -1,7 +1,8 @@
 package course.contact.servlet;
 
-import course.contact.dao.CrudContactDao;
-import course.user.dao.CrudUserDao;
+import course.contact.dao.ContactDao;
+import course.dataaccess.MysqlDaoFactory;
+import course.user.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,18 +21,18 @@ public class ConnectServlet extends HttpServlet {
 
         int readerId;
         int toReadId;
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao = MysqlDaoFactory.getInstance().getUserDao();
 
         //int uvId = crudUserDao.getUserId(u_variable);
         readerId = crudUserDao.getUserId(reader);
         toReadId = crudUserDao.getUserId(toRead);
 
-        CrudContactDao contactDao = new CrudContactDao();
+        ContactDao contactDao = MysqlDaoFactory.getInstance().getContactDao();
         boolean c = contactDao.createContact(readerId, toReadId);
         if (c == true) {
             String succ = "You got the connection you wanted";
             request.setAttribute("succ", succ);
-            response.sendRedirect("/thetis-1/user/?name=" + toRead);
+            response.sendRedirect("user/?name=" + toRead);
         }
 
 
