@@ -13,13 +13,11 @@ import java.sql.SQLException;
 
 public class CrudUserDao extends NewBaseDao implements UserDao {
 
-
-    public CrudUserDao(final DataSource dataSource)
-    {
-      super(dataSource);
+    public CrudUserDao(final DataSource dataSource) {
+        super(dataSource);
     }
 
-  @Override
+    @Override
     public boolean createUser(String username, String encryptedPassword, String description) {
 
         PreparedStatement preparedStatement = null;
@@ -41,7 +39,6 @@ public class CrudUserDao extends NewBaseDao implements UserDao {
             closeConn(con);
         }
         return r;
-
     }
 
     @Override
@@ -146,4 +143,5 @@ public class CrudUserDao extends NewBaseDao implements UserDao {
         }
 
     }
+
 }

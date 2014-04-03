@@ -41,14 +41,14 @@
             <c:if test="${u != user.username}">
                 <c:choose>
                     <c:when test="${c == true}">
-                        <form action="/thetis-1/disconnect_user" method="post">
+                        <form action="../disconnect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
                             <input type="submit" value="disconnect" class="btn btn-group">
                         </form>
                     </c:when>
                     <c:otherwise>
-                        <form action="/thetis-1/connect_user" method="post">
+                        <form action="../connect_user" method="post">
                             <input type="hidden" name="reader" value="${u}">
                             <input type="hidden" name="toRead" value="${user.username}">
                             <input type="submit" value="connect" class="btn btn-group-lg">

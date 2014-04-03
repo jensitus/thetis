@@ -24,7 +24,7 @@ public class UpdateUserServlet extends HttpServlet {
         UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
         crudUserDao.updateUser(username, description);
 
-        response.sendRedirect("/thetis-1/user/?name=" + username);
+        response.sendRedirect("/user/?name=" + username);
 
 
     }

@@ -1,7 +1,6 @@
 package course.post.servlet;
 
 import course.dataaccess.MysqlDaoFactory;
-import course.post.dao.CrudPostDao;
 import course.post.dao.PostDao;
 import course.user.dao.UserDao;
 
@@ -14,22 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/create")
+@WebServlet(urlPatterns = { "/create", "/create/*" })
 public class CreatePostServlet extends HttpServlet {
     private UserDao crudUserDao = MysqlDaoFactory.getInstance().getUserDao();
-    private PostDao crudPostDao = new CrudPostDao();
+    private PostDao crudPostDao = MysqlDaoFactory.getInstance().getPostDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String title = request.getParameter("title");
         String body = request.getParameter("body");
-
+        String answeredPostIdString = request.getParameter("answeredPostId");
+        int answeredPostId = 0;
+        if (answeredPostIdString != null){
+            answeredPostId = Integer.parseInt(answeredPostIdString);
+        }
+        System.out.println(answeredPostId);
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("user");
         int userId;
-
-        String testTitle = title;
-        String testBody = body;
 
         if (title.trim().isEmpty()) {
             String error = "So nicht!!";
@@ -38,9 +39,9 @@ public class CreatePostServlet extends HttpServlet {
             dispatcher.forward(request,response);
         } else {
             userId = crudUserDao.getUserId(username);
-            crudPostDao.createPost(title, body, userId);
+            crudPostDao.createPost(title, body, userId, answeredPostId);
 
-            response.sendRedirect("/thetis-1/user/?name=" + username);
+            response.sendRedirect("/user/?name=" + username);
             //response.sendRedirect("/user/?name=" + username);
         }
 
@@ -50,6 +51,14 @@ public class CreatePostServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String title = request.getParameter("title");
+        String body = request.getParameter("body");
+        String answeredPostId = request.getParameter("answeredPostId");
+
+        request.setAttribute("title", title);
+        request.setAttribute("body", body);
+        request.setAttribute("answeredPostId", answeredPostId);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("createPost.jsp");
         dispatcher.forward(request, response);

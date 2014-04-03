@@ -43,7 +43,7 @@ public class LoginFilter implements Filter {
         if (sessionID.equals(userSessionID)){
             //System.out.println("true");
         } else {
-            ((HttpServletResponse) response).sendRedirect("/thetis-1/login");
+            ((HttpServletResponse) response).sendRedirect("/login");
             return;
         }
 

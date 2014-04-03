@@ -1,8 +1,8 @@
 package course.user.servlet;
 
-import course.contact.dao.CrudContactDao;
+import course.contact.dao.ContactDao;
 import course.dataaccess.MysqlDaoFactory;
-import course.post.dao.CrudPostDao;
+import course.post.dao.PostDao;
 import course.post.model.Post;
 import course.user.dao.UserDao;
 import course.user.model.User;
@@ -28,8 +28,8 @@ public class ShowUserServlet extends HttpServlet {
         String uvariable = (String) request.getAttribute("u");
 
         UserDao crudUserDao =  MysqlDaoFactory.getInstance().getUserDao();
-        CrudContactDao contactDao = new CrudContactDao();
-        CrudPostDao postDao = new CrudPostDao();
+        ContactDao contactDao = MysqlDaoFactory.getInstance().getContactDao();
+        PostDao postDao = MysqlDaoFactory.getInstance().getPostDao();
 
         List<Post> postByUser = postDao.postByUser(userName);
 

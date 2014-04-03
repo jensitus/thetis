@@ -1,6 +1,6 @@
 package course.user.servlet;
 
-import course.contact.dao.CrudContactDao;
+import course.contact.dao.ContactDao;
 import course.dataaccess.MysqlDaoFactory;
 import course.user.dao.UserDao;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String encryptedPassword = passwordService.encryptPassword(password);
 
         //CrudUserDao userDao = new CrudUserDao();
-        CrudContactDao contactDao = new CrudContactDao();
+        ContactDao contactDao = MysqlDaoFactory.getInstance().getContactDao();
 
         //String sql = "insert into user(username, password) values(?,?);";
         UserDao userDao = MysqlDaoFactory.getInstance().getUserDao();

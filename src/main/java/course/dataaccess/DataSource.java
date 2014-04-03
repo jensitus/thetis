@@ -18,24 +18,24 @@ public abstract class DataSource {
     setupDbDriver();
   }
 
-  private void setupDbDriver()
-  {
-    try {
-      properties.load(DataSource.class.getClassLoader().getResourceAsStream("database.properties"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    String driver = properties.getProperty("jdbc.driver");
-    jdbcUrl = properties.getProperty("jdbc.url");
-    jdbcUser = properties.getProperty("jdbc.username");
-    jdbcPassword = properties.getProperty("jdbc.password");
+    private void setupDbDriver()
+        {
+        try {
+            properties.load(DataSource.class.getClassLoader().getResourceAsStream("database.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            String driver = properties.getProperty("jdbc.driver");
+            jdbcUrl = properties.getProperty("jdbc.url");
+            jdbcUser = properties.getProperty("jdbc.username");
+            jdbcPassword = properties.getProperty("jdbc.password");
 
-    try {
-      Class.forName(driver);
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    }
-  }
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+}
 
   protected Connection connectDb() {
 

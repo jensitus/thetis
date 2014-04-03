@@ -1,8 +1,7 @@
 # drop table if exists reader;
-#
 # drop table if exists post;
 # drop table if exists user;
-#
+# drop table if exists post_relation;
 #
 # create table user(
 #   id int not null auto_increment,
@@ -26,3 +25,10 @@
 #   toReadId int,
 #   primary key(id)
 # );
+
+#create table post_relation(
+#  id int not null auto_increment,
+#  answeredPostId int,
+#  answeringPostId int,
+#  primary key (id)
+#);
