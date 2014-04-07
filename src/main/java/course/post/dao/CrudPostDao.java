@@ -324,8 +324,8 @@ public class CrudPostDao extends NewBaseDao implements PostDao {
         List<Post> answeringPosts = new ArrayList<>();
 
         for ( Iterator<Integer> iter = aPostId.iterator(); iter.hasNext(); ) {
-            int api = iter.next();
-            Post post = readPost(api);
+            int apI = iter.next();
+            Post post = readPost(apI);
             answeringPosts.add(post);
         }
         return answeringPosts;

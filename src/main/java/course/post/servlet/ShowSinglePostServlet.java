@@ -28,17 +28,21 @@ public class ShowSinglePostServlet extends HttpServlet {
         PostDao crudPostDao = MysqlDaoFactory.getInstance().getPostDao();
         post = crudPostDao.readPost(id1);
 
-        int answeredPostId = crudPostDao.answeredPostId(id1);
-        Post answeredPost = crudPostDao.readPost(answeredPostId);
+        if (post == null) {
+            response.sendRedirect("/index");
+        } else {
 
-        answeringPostId = crudPostDao.getAnsweringPostId(id1);
-        answeringPosts = crudPostDao.answeringPosts(answeringPostId);
+            int answeredPostId = crudPostDao.answeredPostId(id1);
+            Post answeredPost = crudPostDao.readPost(answeredPostId);
 
-        request.setAttribute("answeredPost", answeredPost);
-        request.setAttribute("answers", answeringPosts);
-        request.setAttribute("post", post);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../singlePost.jsp");
-        dispatcher.forward(request, response);
+            answeringPostId = crudPostDao.getAnsweringPostId(id1);
+            answeringPosts = crudPostDao.answeringPosts(answeringPostId);
 
+            request.setAttribute("answeredPost", answeredPost);
+            request.setAttribute("answers", answeringPosts);
+            request.setAttribute("post", post);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../singlePost.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }

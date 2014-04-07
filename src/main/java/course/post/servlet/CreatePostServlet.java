@@ -33,7 +33,7 @@ public class CreatePostServlet extends HttpServlet {
         int userId;
 
         if (title.trim().isEmpty()) {
-            String error = "So nicht!!";
+            String error = "Come on, it isn't that hard to fill in a title correctly in this motherfucking form:";
             request.setAttribute("error", error);
             RequestDispatcher dispatcher = request.getRequestDispatcher("createPost.jsp");
             dispatcher.forward(request,response);

@@ -9,3 +9,9 @@ function addForm() {
         document.getElementById("ans").style.display = 'none';
 
 }
+
+/*
+ *
+ *   **** The Counter The Form Needs
+ *
+ */
