@@ -25,35 +25,35 @@ import java.sql.SQLException;
  * Date: 06.03.14
  */
 public class NewBaseDao {
-  private javax.sql.DataSource dataSource;
+    private javax.sql.DataSource dataSource;
 
-  public NewBaseDao(final javax.sql.DataSource dataSource) {
-    this.dataSource = dataSource;
-  }
-
-  /** utility methods for subclasses **/
-
-  protected PreparedStatement getPreparedStatement(Connection con, String sql) {
-    PreparedStatement preparedStatement = null;
-    try {
-      preparedStatement = con.prepareStatement(sql);
-    } catch (SQLException e) {
-      e.printStackTrace();
+    public NewBaseDao(final javax.sql.DataSource dataSource) {
+        this.dataSource = dataSource;
     }
-    return preparedStatement;
-  }
 
-  protected void closeConn(Connection con) {
-    if (con != null){
-      try {
-        con.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
+    /** utility methods for subclasses **/
+
+    protected PreparedStatement getPreparedStatement(Connection con, String sql) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = con.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return preparedStatement;
     }
-  }
 
-  protected javax.sql.DataSource getDataSource() {
-    return dataSource;
-  }
+    protected void closeConn(Connection con) {
+        if (con != null){
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected javax.sql.DataSource getDataSource() {
+        return dataSource;
+    }
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,19 @@
         <div style="width: 400px">
             <hr>
             <a href="post/?id=${cp.id}">${cp.title}</a><br>
-            ${cp.body}<br>
+            <c:set var="pbody" value="${fn:split(cp.body, '.')}" />
+            <c:choose>
+                <c:when test="${fn:length(pbody) > 6}">
+                    ${pbody[0]}.
+                    ${pbody[1]} ...
+                    <a href="post/?id=${cp.id}">read more ...</a><br>
+                </c:when>
+                <c:otherwise>
+                    ${cp.body}<br>
+                </c:otherwise>
+
+            </c:choose>
+
             <small>by: <a href="user/?name=${cp.username}">${cp.username}</a></small><br>
 
         </div>
@@ -32,5 +45,8 @@
 
 </div>
 
+<!-- Bootstrap Core Javascript  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
 </body>
 </html>
