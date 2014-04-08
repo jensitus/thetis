@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie(username, sessionId);
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
-            response.sendRedirect("connected_posts");
+            response.sendRedirect("/connected_posts");
         }
     }
 
