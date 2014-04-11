@@ -24,6 +24,6 @@ public class DeleteSinglePostServlet extends HttpServlet {
 
         crudPostDao.deletePost(id);
 
-        resp.sendRedirect("posts");
+        resp.sendRedirect("/posts");
     }
 }

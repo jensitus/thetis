@@ -40,13 +40,8 @@ public class CreatePostServlet extends HttpServlet {
         } else {
             userId = crudUserDao.getUserId(username);
             crudPostDao.createPost(title, body, userId, answeredPostId);
-
             response.sendRedirect("/user/?name=" + username);
-            //response.sendRedirect("/user/?name=" + username);
         }
-
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("");
-        //dispatcher.forward(request, response);
 
     }
 

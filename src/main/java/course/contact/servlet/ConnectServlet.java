@@ -32,7 +32,7 @@ public class ConnectServlet extends HttpServlet {
         if (c == true) {
             String succ = "You got the connection you wanted";
             request.setAttribute("succ", succ);
-            response.sendRedirect("user/?name=" + toRead);
+            response.sendRedirect("/user/?name=" + toRead);
         }
 
 

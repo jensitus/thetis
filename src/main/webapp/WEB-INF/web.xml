@@ -41,4 +41,14 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>thetis-1</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>-->
+
 </web-app>
